@@ -243,6 +243,14 @@
   </div>
 
   <script>
+    // Strip rich-text formatting when pasting into any editable field
+    document.addEventListener('paste', function (e) {
+      if (e.target.getAttribute('contenteditable') === 'true') {
+        e.preventDefault();
+        const text = e.clipboardData.getData('text/plain');
+        document.execCommand('insertText', false, text);
+      }
+    });
     const avatarContainer = document.getElementById('avatarContainer');
     const avatarPreview = document.getElementById('avatarPreview');
 
