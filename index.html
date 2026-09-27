@@ -1,4 +1,5 @@
-<html lang="en"><head>
+<html lang="en">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Discord &amp; System Database — Mock</title>
@@ -13,37 +14,7 @@
     --gold:#f59e0b;
     --white:#f8fafc;
   }
-  /* New Header Styling */
-  header h1{
-    margin:0 0 18px 0;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.6);
-  }
-  .brand-header-row {
-    display: flex;
-    flex-direction: column; /* This stacks the logo/title on top and text below */
-    align-items: center;
-    justify-content: center;
-    gap: 8px; /* Space between the main logo row and the text below */
-  }
-  .discord-icon {
-    width: 38px;
-    height: 32px;
-    position: relative;
-    top: 2px;
-  }
-  .brand-text {
-    font-family: 'Arial Black', Gadget, sans-serif;
-    color: var(--white);
-    font-size: 50px;
-    letter-spacing: 1px;
-  }
-  .title-sub {
-    display: block;
-    color: var(--muted);
-    font-size: 15px;
-    font-weight: 600;
-    margin-top: 6px;
-  }
+  
   html,body{
     height:100%;
     margin:0;
@@ -52,23 +23,62 @@
     background-attachment: fixed;
     background-size: cover;
   }
-  .wrap{max-width:980px;margin:28px auto;padding:24px; text-align:center;}
+  
+  .wrap{max-width:760px;margin:28px auto;padding:24px; text-align:center;}
+  
   header h1{
-    font-family: 'Arial Black', Gadget, sans-serif;
-    color: var(--white);
-    font-size:34px;
     margin:0 0 18px 0;
     text-shadow: 0 2px 4px rgba(0,0,0,0.6);
   }
+  
   .system-btn{
-    display:inline-flex;align-items:center;gap:12px;background:var(--accent);color:white;padding:18px 26px;border-radius:8px;
-    box-shadow:0 6px 18px rgba(15,15,20,0.35);font-weight:700;margin-bottom:18px;
+    display:inline-flex;
+    flex-direction: column;
+    align-items:center;
+    gap: 8px;
+    background: var(--accent);
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(15,15,20,0.35);
+    font-weight: 700;
+    margin-bottom: 18px;
+    width: 100%;
+    max-width: 500px;
   }
-  .system-btn img{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.06);padding:6px}
-  .card{background:var(--card);border-radius:6px;padding:26px;text-align:left;color:var(--muted);box-shadow:0 10px 30px rgba(0,0,0,0.8);}
-  .profile-row{display:flex;align-items:center;gap:18px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,0.03);}
+  
+  .brand-text {
+    font-family: 'Arial Black', Gadget, sans-serif;
+    color: var(--white);
+    font-size: 38px;
+    letter-spacing: 1px;
+  }
+
+  .card{
+    background: var(--card);
+    border-radius: 6px;
+    padding: 26px;
+    text-align: left;
+    color: var(--muted);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+  }
+  
+  .profile-row{
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+  }
+  
   .avatar{
-    width:72px;height:72px;border-radius:50%;overflow:hidden;border:2px solid rgba(255,255,255,0.06);flex:0 0 72px;background:#111;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid rgba(255,255,255,0.06);
+    flex: 0 0 72px;
+    background: #111;
     cursor: pointer;
   }
   .avatar img{width:100%;height:100%;object-fit:cover;display:block}
@@ -98,16 +108,16 @@
   .progress-wrap{background:rgba(255,255,255,0.06);height:38px;border-radius:6px;padding:4px;display:flex;align-items:center}
   
   .progress-bar{
-    height:30px;
-    border-radius:4px;
-    background:linear-gradient(90deg,var(--green),#2bb673);
-    width:90.69%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#fff;
-    font-weight:700;
-    cursor:text;
+    height: 30px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--green), #2bb673);
+    width: 0%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    cursor: text;
   }
 
   .deposits{display:flex;gap:18px;justify-content:space-between;padding-top:12px;border-top:1px dashed rgba(255,255,255,0.03);margin-top:6px}
@@ -153,16 +163,16 @@
   <div class="wrap">
     <header>
       <div style="display:flex;justify-content:center">
-        <div class="system-btn" role="button" aria-label="System Database" style="display: flex; flex-direction: column; align-items: center; gap: 8px; width: 100%; max-width: 500px; padding: 20px;">
+        <div class="system-btn" role="button" aria-label="System Database">
           
-          <!-- Top Row: Discord Logo and DiSCORD text side-by-side -->
+          <!-- Top Row: Discord Logo (forced clear white) and DiSCORD text -->
           <div style="display: flex; align-items: center; gap: 12px;">
-            <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/9d2b8def-7b8d-4476-800d-597e3fcb5f07/dgt0pmh-6b1f2ed0-bcac-42da-92d3-4ef3dae67671.jpg/v1/fit/w_800,h_800,q_70,strp/discord_logo_hd_by_ijungakrom_dgt0pmh-414w-2x.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9ODAwIiwicGF0aCI6Ii9mLzlkMmI4ZGVmLTdiOGQtNDQ3Ni04MDBkLTU5N2UzZmNiNWYwNy9kZ3QwcG1oLTZiMWYyZWQwLWJjYWMtNDJkYS05MmQzLTRlZjNkYWU2NzY3MS5qcGciLCJ3aWR0aCI6Ijw9ODAwIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0._7s5oEoCP-_shtFbqFF63xU8hmMNxXaiOPmO5_5-Nek" alt="Discord icon" style="width: 50px; height: 50px; object-fit: contain;">
+            <img id="headerLogo" src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" alt="Discord icon" title="Right-click to change header icon" style="width: 42px; height: 42px; object-fit: contain; filter: brightness(0) invert(1); cursor: pointer;">
             <span class="brand-text">DiSCORD</span>
           </div>
 
           <!-- Bottom Row: Subtitle stacked neatly underneath -->
-          <span style="color: #ffffff; font-size: 20px; font-weight: 600;">System Database and Validation Process</span>
+          <span style="color: #ffffff; font-size: 15px; font-weight: 600;">System Database and Validation Process</span>
 
         </div>
       </div>
@@ -171,7 +181,7 @@
     <main class="card" role="main">
       <div class="profile-row">
         <div class="avatar" id="avatarContainer" title="Right-click to change avatar image">
-          <img id="https://media.interaksyon.com/wp-content/uploads/2026/06/Rene-Baterbonia.jpg">
+          <img id="avatarPreview" src="https://media.interaksyon.com/wp-content/uploads/2026/06/Rene-Baterbonia.jpg" alt="avatar preview">
         </div>
         <div class="profile-meta">
           <div class="name" contenteditable="true" spellcheck="false">Rene Baterbonia</div>
@@ -188,7 +198,7 @@
           <div class="value" style="margin-bottom:12px">FRAUD/PHISHING</div>
 
           <div style="margin-bottom:12px"><span style="color:#f59e0b;font-weight:800;margin-right:8px">⚠</span><span class="label">WalletAID:</span></div>
-            <div class="value">0x7A485B756AE5CD1CDD35298FD052590BCA4F76</div>
+          <div class="value">0x7A485B756AE5CD1CDD35298FD052590BCA4F76</div>
 
           <div style="margin-bottom:12px"><span style="color:#f59e0b;font-weight:800;margin-right:8px">⚠</span><span class="label">Number of Reports:</span></div>
           <div class="value">3</div>
@@ -237,12 +247,13 @@
       <iframe src="https://gatecord.com/discord-id-lookup/" title="Gatecord Discord ID Lookup"></iframe>
     </div>
 
-    <p style="color:var(--white);font-size:30px;margin-top:12px;text-align:center;text-shadow:0 1px 2px rgba(0,0,0,0.5)">
+    <p style="color:var(--white);font-size:13px;margin-top:12px;text-align:center;text-shadow:0 1px 2px rgba(0,0,0,0.5)">
       KAWAT NA MGA KUNGKANG - masterkonams
     </p>
   </div>
 
   <script>
+    // Avatar right-click swap
     const avatarContainer = document.getElementById('avatarContainer');
     const avatarPreview = document.getElementById('avatarPreview');
 
@@ -254,9 +265,22 @@
       }
     });
 
+    // Header logo right-click swap
+    const headerLogo = document.getElementById('headerLogo');
+    if (headerLogo) {
+      headerLogo.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        const newUrl = prompt('Paste new header icon image URL:', headerLogo.src);
+        if (newUrl !== null && newUrl.trim() !== '') {
+          headerLogo.src = newUrl.trim();
+        }
+      });
+    }
+
+    // Progress Bar Handling (Decimals supported, starts at 0%)
     const progressBar = document.getElementById('progressBar');
 
-   function updateProgress(isTyping = false) {
+    function updateProgress(isTyping = false) {
       let cleanText = progressBar.textContent.replace('%', '').trim();
       let val = parseFloat(cleanText);
       if (isNaN(val)) val = 0;
@@ -270,7 +294,6 @@
       }
     }
 
-    // Initialize at 0%
     progressBar.textContent = '0%';
     updateProgress();
 
@@ -302,7 +325,7 @@
       updateProgress(false);
     });
 
-    // --- PASTE THIS RIGHT HERE AT THE BOTTOM OF YOUR SCRIPT ---
+    // Clean Plain-Text Paste Handler for all editable fields
     document.addEventListener('paste', function (e) {
       const target = e.target.closest('[contenteditable="true"]');
       if (!target) return;
@@ -317,4 +340,5 @@
       selection.collapseToEnd();
     });
   </script>
-</body></html>
+</body>
+</html>
