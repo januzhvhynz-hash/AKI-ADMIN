@@ -171,11 +171,11 @@
     <main class="card" role="main">
       <div class="profile-row">
         <div class="avatar" id="avatarContainer" title="Right-click to change avatar image">
-          <img id="avatarPreview" src="https://cdn.Discordapp.com/avatars/664580809436692481/7cb1aef0372d7bab47c4dd992e0543d1.png" alt="avatar preview">
+          <img id="https://media.interaksyon.com/wp-content/uploads/2026/06/Rene-Baterbonia.jpg">
         </div>
         <div class="profile-meta">
-          <div class="name" contenteditable="true" spellcheck="false">KyloRen</div>
-          <div class="handle" contenteditable="true" spellcheck="false">@therenempire</div>
+          <div class="name" contenteditable="true" spellcheck="false">Rene Baterbonia</div>
+          <div class="handle" contenteditable="true" spellcheck="false">@Renelangsakalam</div>
           <div class="id" contenteditable="true" spellcheck="false">664580809436692481</div>
         </div>
       </div>
@@ -201,7 +201,7 @@
             <div class="label">Validation Process</div>
             <div class="validation">
               <div class="progress-wrap" role="progressbar">
-                <div id="progressBar" class="progress-bar" contenteditable="true" spellcheck="false">90.69%</div>
+                <div id="progressBar" class="progress-bar" contenteditable="true" spellcheck="false">0%</div>
               </div>
             </div>
           </div>
@@ -211,15 +211,15 @@
       <div class="deposits">
         <div class="col">
           <div class="title">Recent Deposit</div>
-          <div class="amount"><span>$</span><span contenteditable="true" spellcheck="false">5,280.00</span></div>
+          <div class="amount"><span>$</span><span contenteditable="true" spellcheck="false">0</span></div>
         </div>
         <div class="col">
           <div class="title">Total Deposit</div>
-          <div class="amount"><span>$</span><span contenteditable="true" spellcheck="false">5,280.00</span></div>
+          <div class="amount"><span>$</span><span contenteditable="true" spellcheck="false">0</span></div>
         </div>
         <div class="col">
           <div class="title">Refund Balance</div>
-          <div class="amount"><span>$</span><span contenteditable="true" spellcheck="false">5,280.00</span></div>
+          <div class="amount"><span>$</span><span contenteditable="true" spellcheck="false">0</span></div>
         </div>
         <div class="col">
           <div class="title">Total Refund</div>
@@ -238,19 +238,11 @@
     </div>
 
     <p style="color:var(--white);font-size:13px;margin-top:12px;text-align:center;text-shadow:0 1px 2px rgba(0,0,0,0.5)">
-      Tip: Type a percentage and press <b>Enter</b> to apply it. Right-click the profile picture to change its image URL.
+      KAWAT NA MGA KUNGKANG - masterkonams
     </p>
   </div>
 
   <script>
-    // Strip rich-text formatting when pasting into any editable field
-    document.addEventListener('paste', function (e) {
-      if (e.target.getAttribute('contenteditable') === 'true') {
-        e.preventDefault();
-        const text = e.clipboardData.getData('text/plain');
-        document.execCommand('insertText', false, text);
-      }
-    });
     const avatarContainer = document.getElementById('avatarContainer');
     const avatarPreview = document.getElementById('avatarPreview');
 
@@ -264,7 +256,7 @@
 
     const progressBar = document.getElementById('progressBar');
 
-    function updateProgress() {
+   function updateProgress(isTyping = false) {
       let cleanText = progressBar.textContent.replace('%', '').trim();
       let val = parseFloat(cleanText);
       if (isNaN(val)) val = 0;
@@ -272,17 +264,57 @@
       if (val > 100) val = 100;
       
       progressBar.style.width = val + '%';
-      progressBar.textContent = val + '%';
+      
+      if (!isTyping && !progressBar.textContent.includes('%')) {
+        progressBar.textContent = val + '%';
+      }
     }
 
-    progressBar.addEventListener('input', updateProgress);
+    // Initialize at 0%
+    progressBar.textContent = '0%';
+    updateProgress();
+
+    progressBar.addEventListener('input', () => {
+      let cleanText = progressBar.textContent.replace('%', '').trim();
+      let val = parseFloat(cleanText);
+      if (!isNaN(val)) {
+        if (val < 0) val = 0;
+        if (val > 100) val = 100;
+        progressBar.style.width = val + '%';
+      }
+    });
 
     progressBar.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
         e.preventDefault();
-        updateProgress();
+        if (!progressBar.textContent.includes('%')) {
+          progressBar.textContent += '%';
+        }
+        updateProgress(false);
         progressBar.blur();
       }
+    });
+
+    progressBar.addEventListener('blur', () => {
+      if (!progressBar.textContent.includes('%')) {
+        progressBar.textContent += '%';
+      }
+      updateProgress(false);
+    });
+
+    // --- PASTE THIS RIGHT HERE AT THE BOTTOM OF YOUR SCRIPT ---
+    document.addEventListener('paste', function (e) {
+      const target = e.target.closest('[contenteditable="true"]');
+      if (!target) return;
+      
+      e.preventDefault();
+      const text = (e.clipboardData || window.clipboardData).getData('text/plain');
+      
+      const selection = window.getSelection();
+      if (!selection.rangeCount) return;
+      selection.deleteFromDocument();
+      selection.getRangeAt(0).insertNode(document.createTextNode(text));
+      selection.collapseToEnd();
     });
   </script>
 </body></html>
