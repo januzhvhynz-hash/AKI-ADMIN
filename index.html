@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -22,6 +23,58 @@
     background: var(--bg);
     background-attachment: fixed;
     background-size: cover;
+  }
+
+  /* Passcode Gatekeeper Styles */
+  #passcode-gate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999999;
+    background: var(--bg);
+  }
+  .login-box {
+    background: var(--card);
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    color: var(--white);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    width: 100%;
+    max-width: 400px;
+  }
+  .login-box input {
+    width: calc(100% - 20px);
+    padding: 12px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    background: #111217;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: white;
+    outline: none;
+  }
+  .login-box button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .login-box button:hover {
+    filter: brightness(1.1);
+  }
+  #main-content {
+    display: none;
   }
   
   .wrap{max-width:760px;margin:28px auto;padding:24px; text-align:center;}
@@ -160,12 +213,25 @@
 </style>
 </head>
 <body>
-  <div class="wrap">
+
+  <!-- Passcode Gatekeeper Screen -->
+  <div id="passcode-gate">
+    <div class="login-box">
+      <h2>Access Gate</h2>
+      <p style="color: var(--muted); font-size: 14px; margin-bottom: 20px;">Enter this hour's passcode:</p>
+      <input type="password" id="passcode-input" placeholder="Passcode">
+      <button onclick="checkPasscode()">Enter</button>
+      <p id="error-msg" style="color: #ef4444; font-size: 13px; margin-top: 15px; display: none;">Incorrect passcode for this hour!</p>
+    </div>
+  </div>
+
+  <!-- Your Dashboard Content (Hidden Until Unlocked) -->
+  <div id="main-content" class="wrap">
     <header>
       <div style="display:flex;justify-content:center">
         <div class="system-btn" role="button" aria-label="System Database">
           
-          <!-- Top Row: Discord Logo (forced clear white) and DiSCORD text -->
+          <!-- Top Row: Discord Logo and DiSCORD text -->
           <div style="display: flex; align-items: center; gap: 12px;">
             <img id="headerLogo" src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" alt="Discord icon" title="Right-click to change header icon" style="width: 42px; height: 42px; object-fit: contain; filter: brightness(0) invert(1); cursor: pointer;">
             <span class="brand-text">DiSCORD</span>
@@ -253,6 +319,37 @@
   </div>
 
   <script>
+    // Hourly Passcode Logic
+    function getHourlyPassword() {
+        const today = new Date();
+        const hour = today.getHours(); // 0 to 23
+        if (hour >= 12) {
+            let pmNumber = hour - 11;
+            return "konams" + pmNumber;
+        } else {
+            let amNumber = hour + 1;
+            return "masterkonams" + amNumber;
+        }
+    }
+
+    function checkPasscode() {
+        const userInput = document.getElementById("passcode-input").value;
+        const gate = document.getElementById("passcode-gate");
+        const mainContent = document.getElementById("main-content");
+        const errorMsg = document.getElementById("error-msg");
+
+        if (userInput === getHourlyPassword()) {
+            gate.style.display = "none";
+            mainContent.style.display = "block";
+        } else {
+            errorMsg.style.display = "block";
+        }
+    }
+
+    document.getElementById("passcode-input").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") checkPasscode();
+    });
+
     // Avatar right-click swap
     const avatarContainer = document.getElementById('avatarContainer');
     const avatarPreview = document.getElementById('avatarPreview');
