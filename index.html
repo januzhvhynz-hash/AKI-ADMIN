@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -6,8 +5,11 @@
 <title>Discord &amp; System Database — Mock</title>
 <style>
   :root{
-    /* Discord-inspired deep cosmic gradient background */
-    --bg: radial-gradient(circle at 50% 50%, #2b2b65 0%, #111217 65%), #0c0d10;
+    /* Passcode Background Image URL */
+    --bg-login: url('https://scontent.fcgy3-2.fna.fbcdn.net/v/t39.30808-6/468180363_10160333505602751_8773261710904959033_n.png?stp=dst-jpg_tt6&cstp=mx540x638&ctp=s540x638&_nc_cat=108&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=0b6b33&_nc_eui2=AeHkRD48MyN38Ex97c__2Ki7DHkcQxDhdK8MeRxDEOF0r3PywvnkiY233qSARfyIFkL5k6nZhRGWL4MUJCaozsTF&_nc_ohc=yJt6N3afpdsQ7kNvwGoyiyk&_nc_oc=Adpp4eaUIDzGugbmN3zDvvqsKBglHn0Bpy_wNAnHX8hLVFL8af1v4MCVLnCrq8uVLxI&_nc_zt=23&_nc_ht=scontent.fcgy3-2.fna&_nc_gid=stquGvqGErg5DIffM1EuDg&_nc_ss=7b2a8&oh=00_AQMAyKFaK9Jc4JhBsbxj-YpXPVyEz0vAj7XvG-2Zku5FCw&oe=6AC50CCE');
+    
+    /* Discord-inspired deep cosmic gradient background for dashboard */
+    --bg-dash: radial-gradient(circle at 50% 50%, #2b2b65 0%, #111217 65%), #0c0d10;
     --card:#202224;
     --muted:#9ca3af;
     --accent:#4f46e5;
@@ -20,24 +22,28 @@
     height:100%;
     margin:0;
     font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    background: var(--bg);
+    background: var(--bg-dash);
     background-attachment: fixed;
     background-size: cover;
   }
 
-  /* Passcode Gatekeeper Styles */
+  /* Passcode Gatekeeper Overlay Styles */
   #passcode-gate {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
     position: fixed;
     top: 0;
     left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: var(--bg-login);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     z-index: 999999;
-    background: var(--bg);
   }
+
   .login-box {
     background: var(--card);
     border-radius: 8px;
@@ -48,8 +54,14 @@
     width: 100%;
     max-width: 400px;
   }
+
+  .login-box h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+
   .login-box input {
-    width: calc(100% - 20px);
+    width: calc(100% - 24px);
     padding: 12px;
     font-size: 16px;
     margin-bottom: 15px;
@@ -59,6 +71,11 @@
     color: white;
     outline: none;
   }
+
+  .login-box input:focus {
+    border-color: var(--accent);
+  }
+
   .login-box button {
     width: 100%;
     padding: 12px;
@@ -69,10 +86,13 @@
     border-radius: 4px;
     font-weight: 700;
     cursor: pointer;
+    transition: filter 0.2s;
   }
+
   .login-box button:hover {
     filter: brightness(1.1);
   }
+
   #main-content {
     display: none;
   }
@@ -214,24 +234,24 @@
 </head>
 <body>
 
-  <!-- Passcode Gatekeeper Screen -->
+  <!-- Passcode Login Gate -->
   <div id="passcode-gate">
     <div class="login-box">
-      <h2>Access Gate</h2>
-      <p style="color: var(--muted); font-size: 14px; margin-bottom: 20px;">Enter this hour's passcode:</p>
-      <input type="password" id="passcode-input" placeholder="Passcode">
-      <button onclick="checkPasscode()">Enter</button>
-      <p id="error-msg" style="color: #ef4444; font-size: 13px; margin-top: 15px; display: none;">Incorrect passcode for this hour!</p>
+      <h2>WHOOOOOPSSS</h2>
+      <p style="color: var(--muted); font-size: 14px; margin-bottom: 20px;">I CHAT SA SI MASTERKONAMS PARA SA PASSWORD</p>
+      <input type="password" id="passcode-input" placeholder="">
+      <button onclick="checkPasscode()">PASOK NA KUNGKANG</button>
+      <p id="error-msg" style="color: #ef4444; font-size: 13px; margin-top: 15px; display: none;">Incorrect passcode!</p>
     </div>
   </div>
 
-  <!-- Your Dashboard Content (Hidden Until Unlocked) -->
+  <!-- Main Discord Dashboard Content (Hidden Until Unlocked) -->
   <div id="main-content" class="wrap">
     <header>
       <div style="display:flex;justify-content:center">
         <div class="system-btn" role="button" aria-label="System Database">
           
-          <!-- Top Row: Discord Logo and DiSCORD text -->
+          <!-- Top Row: Discord Logo (forced clear white) and DiSCORD text -->
           <div style="display: flex; align-items: center; gap: 12px;">
             <img id="headerLogo" src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" alt="Discord icon" title="Right-click to change header icon" style="width: 42px; height: 42px; object-fit: contain; filter: brightness(0) invert(1); cursor: pointer;">
             <span class="brand-text">DiSCORD</span>
@@ -319,7 +339,7 @@
   </div>
 
   <script>
-    // Hourly Passcode Logic
+    // Hourly Passcode Verification Logic
     function getHourlyPassword() {
         const today = new Date();
         const hour = today.getHours(); // 0 to 23
